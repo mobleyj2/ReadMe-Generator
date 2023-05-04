@@ -1,7 +1,7 @@
 
 
 // TODO: Include packages needed for this application
-const fs = require('fs');
+const fs = require('fs').promises;
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown');
 
@@ -22,6 +22,7 @@ const questions = [
             choices: ['BSD','MIT','GPL'] ,
             message: 'What license do you want to use?',
             name: 'lic',
+            
         },
         {
             type: 'input',
@@ -30,17 +31,22 @@ const questions = [
         },
         {
             type: 'input',
-            message: "Please enter Table of Content?",
-            name: 'table',
+            message: "Enter in contribution guidelines",
+            name: 'cont',
         },
         {
             type: 'input',
-            message: "Please enter your Installtion? ",
+            message: "Enter Testing Instructions",
+            name: 'test',
+        },
+        {
+            type: 'input',
+            message: "Please enter your Installtion info? ",
             name: 'Ins',
         },
         {
             type: 'input',
-            message: 'Please enter ways to Use?',
+            message: 'Please enter ways to Usage?',
             name: 'use',
         },
         {
@@ -68,10 +74,12 @@ const questions = [
 function init() {
     inquirer.prompt(questions).then((inquirerResponces) =>{
         fs.writeFile('README.md', generateMarkdown({...inquirerResponces}));
-
+        console.log ("Read me has been createded!!!!!")
+        console.log (inquirerResponces);
     });
-    
+ 
 
 }
+
 // Function call to initialize app
 init();
