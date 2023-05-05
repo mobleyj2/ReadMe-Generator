@@ -75,7 +75,7 @@ function init() {
     inquirer.prompt(questions).then((inquirerResponces) =>{
         fs.writeFile('README.md', generateMarkdown({...inquirerResponces}));
         console.log ("Read me has been createded!!!!!")
-        console.log (inquirerResponces);
+        
     });
  
 
